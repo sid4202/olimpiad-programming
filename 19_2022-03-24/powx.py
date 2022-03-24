@@ -1,6 +1,6 @@
 class TreeNode:
     def __init__(self, value):
-        self.val = val
+        self.val = value
         self.left = None
         self.right = None
 
@@ -35,23 +35,22 @@ class Solution:
     def fill_res(self, root):
         for i in range(self.get_depth(root)):
             self.res.append([])
-            for i in range(2**self.get_depth(root) - 1):
+            for j in range(2 ** self.get_depth(root) - 1):
                 self.res[i].append("")
 
-
-    def bfs(self,root):
+    def bfs(self, root):
         queue = Queue([root])
         level = 0
-        self.res[level][len(self.res - 1)/2] = str(root.val)
+        self.res[level][(len(self.res[0]) - 1) / 2] = str(root.val)
         while queue.size():
             size = queue.size()
-            level+=1
+            level += 1
             for i in range(size):
                 node = queue.pop()
 
                 if node.left:
                     queue.add(node.left)
-                    self.res[level][self.res[level-1].index(node.value) - 1] = str(node.left.val)
+                    self.res[level][self.res[level - 1].index(node.value) - 1] = str(node.left.val)
 
                 if node.right:
                     queue.add(node.right)
@@ -61,3 +60,11 @@ class Solution:
         self.fill_res(root)
         self.bfs(root)
         return self.res
+
+
+s = Solution()
+root = TreeNode(1)
+root.left = TreeNode(2)
+
+arr = s.printTree(root)
+print(arr)
