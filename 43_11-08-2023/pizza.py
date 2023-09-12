@@ -56,7 +56,7 @@ while i > 0:
 
 answer.sort()
 
-if best_price <= a + b:
+if best_price < a + b:
     print(best_price)
     print(len(answer), *answer)
 else:
