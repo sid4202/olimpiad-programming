@@ -24,12 +24,12 @@ class Solution():
                 if len(possible_prices) == 0:
                     return False
 
-                dp[i][j] = max(possible_prices) + current_price
+                dp[i][j] = min(possible_prices) + current_price
                 if dp[i][j] < 0:
                     dp[i][j] = -1
 
-        if dp[len(dp) - 1][len(dp[0]) - 1] != -1:
-            return True
+        return dp[len(dp) - 1][len(dp[0]) - 1] != -1
+
 
     def minimal_credit(self):
         l = 0
